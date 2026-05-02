@@ -1,0 +1,53 @@
+{
+  "events": [
+    {
+      "id": "evt_1234567890_sample1",
+      "timestamp": 1714516800000,
+      "type": "motion",
+      "ax": 0.15,
+      "ay": 0.22,
+      "az": 9.81,
+      "confidence": 0.92,
+      "acknowledged": false,
+      "exported": false,
+      "metadata": { "source": "devicemotion" }
+    },
+    {
+      "id": "evt_1234567890_sample2",
+      "timestamp": 1714517100000,
+      "type": "interaction",
+      "acknowledged": false,
+      "exported": false,
+      "metadata": { "action": "user_tap" }
+    },
+    {
+      "id": "evt_1234567890_sample3",
+      "timestamp": 1714517400000,
+      "type": "motion",
+      "ax": 4.52,
+      "ay": 3.18,
+      "az": 5.42,
+      "confidence": 0.88,
+      "acknowledged": false,
+      "exported": false,
+      "metadata": { "source": "devicemotion", "type": "spike" }
+    },
+    {
+      "id": "evt_1234567890_sample4",
+      "timestamp": 1714518000000,
+      "type": "notification",
+      "acknowledged": false,
+      "exported": false,
+      "metadata": { "alert_type": "fall_candidate" }
+    },
+    {
+      "id": "evt_1234567890_sample5",
+      "timestamp": 1714520400000,
+      "type": "incident",
+      "confidence": 1.0,
+      "acknowledged": false,
+      "exported": false,
+      "metadata": { "source": "panic" }
+    }
+  ]
+}

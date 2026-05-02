@@ -1,0 +1,46 @@
+{
+  "incidents": [
+    {
+      "id": "inc_1234567890_demo1",
+      "timestamp": 1714516800000,
+      "source": "voice",
+      "transcript": "I fell in the bathroom and my leg hurts. I need help",
+      "extracted": {
+        "time": "10:00 am",
+        "location": "bathroom",
+        "symptoms": "fell, leg, hurts"
+      },
+      "severity": "high",
+      "notified": true,
+      "ack_by": "2024-05-01T10:05:00Z"
+    },
+    {
+      "id": "inc_1234567890_demo2",
+      "timestamp": 1714520400000,
+      "source": "panic",
+      "transcript": "Panic button pressed - emergency assistance requested",
+      "extracted": {
+        "time": null,
+        "location": null,
+        "symptoms": "emergency"
+      },
+      "severity": "critical",
+      "notified": true,
+      "ack_by": null
+    },
+    {
+      "id": "inc_1234567890_demo3",
+      "timestamp": 1714524000000,
+      "source": "manual",
+      "transcript": "Fell while getting out of bed in the morning. No injuries.",
+      "extracted": {
+        "time": "morning",
+        "location": "bedroom",
+        "symptoms": "fell"
+      },
+      "severity": "low",
+      "notified": false,
+      "ack_by": null
+    }
+  ]
+}
