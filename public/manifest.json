@@ -2,8 +2,8 @@
   "name": "CareCompass Lite",
   "short_name": "CareCompass",
   "description": "Mobile-first PWA for eldercare fall detection and incident reporting",
-  "start_url": "/carecompass-lite/",
-  "scope": "/carecompass-lite/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#3b82f6",
@@ -11,13 +11,13 @@
   "categories": ["health", "medical"],
   "screenshots": [
     {
-      "src": "/carecompass-lite/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/carecompass-lite/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "form_factor": "wide"
@@ -25,25 +25,25 @@
   ],
   "icons": [
     {
-      "src": "/carecompass-lite/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/carecompass-lite/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/carecompass-lite/icon-192-maskable.png",
+      "src": "icon-192-maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/carecompass-lite/icon-512-maskable.png",
+      "src": "icon-512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -54,15 +54,15 @@
       "name": "Report Incident",
       "short_name": "Report",
       "description": "Quickly report an incident",
-      "url": "/carecompass-lite/?view=incident",
-      "icons": [{ "src": "/carecompass-lite/icon-192.png", "sizes": "192x192" }]
+      "url": "?view=incident",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Emergency",
       "short_name": "Emergency",
       "description": "Panic button quick access",
-      "url": "/carecompass-lite/?view=panic",
-      "icons": [{ "src": "/carecompass-lite/icon-192.png", "sizes": "192x192" }]
+      "url": "?view=panic",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
