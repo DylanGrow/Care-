@@ -67,7 +67,7 @@ function Settings({ onViewChange, textSize, onTextSizeChange }) {
   };
 
   const handleClearData = async () => {
-    if (confirm('Are you sure? This will delete all recorded events and incidents.')) {
+    if (window.confirm('Are you sure? This will delete all recorded events and incidents.')) {
       await clearAllData();
       alert('All data cleared');
     }
