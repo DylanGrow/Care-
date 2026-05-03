@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'; // ADDED useRef HERE
+import React, { useState, useEffect, useRef } from 'react';
 import { FallDetector, createDemoMotionSequence } from '../lib/fallDetector';
 import { saveEvent, getSetting, saveSetting, getIncidents } from '../lib/storage';
 import { sendFallAlert, sendIncidentAlert } from '../lib/notifications';
