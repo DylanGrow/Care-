@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // ADDED useRef HERE
 import { FallDetector, createDemoMotionSequence } from '../lib/fallDetector';
 import { saveEvent, getSetting, saveSetting, getIncidents } from '../lib/storage';
 import { sendFallAlert, sendIncidentAlert } from '../lib/notifications';
@@ -45,7 +45,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
     setSensorData({ ax: x, ay: y, az: z });
 
     if (fallDetector) {
-      // Get device orientation if available
       const alpha = event.alpha;
       const beta = event.beta;
       const gamma = event.gamma;
@@ -54,10 +53,8 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
       
       if (result?.type === 'fall_confirmed') {
         if (result.requiresConfirmation) {
-          // Low confidence: ask user to confirm
           showFallConfirmation(result);
         } else {
-          // High confidence: auto-alert
           handleFallDetected(result);
         }
       }
@@ -194,7 +191,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
 
   return (
     <div className="p-4 pt-6">
-      {/* Risk Card */}
       <div className={`card border-2 ${getRiskColor(riskScore)} mb-6`}>
         <div className="flex justify-between items-center mb-2">
           <h1 className="text-2xl font-bold">CareCompass Lite</h1>
@@ -210,7 +206,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
         </div>
       </div>
 
-      {/* Sensor Debug Info (Development) */}
       {demoMode && (
         <div className="card bg-gray-100 text-xs font-mono mb-4">
           <div>Accel: ({sensorData.ax?.toFixed(2)}, {sensorData.ay?.toFixed(2)}, {sensorData.az?.toFixed(2)})</div>
@@ -218,7 +213,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
         </div>
       )}
 
-      {/* Quick Actions */}
       <div className="grid grid-cols-2 gap-3 mb-6">
         <ActionButton 
           icon="☎️" 
@@ -239,7 +233,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
         />
       </div>
 
-      {/* Panic Button */}
       <button
         onMouseDown={handlePanicStart}
         onMouseUp={handlePanicEnd}
@@ -279,7 +272,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
         </div>
       )}
 
-      {/* Demo Controls */}
       {demoMode && (
         <div className="card bg-blue-50 border-blue-200">
           <h3 className="font-semibold mb-3">Demo Mode</h3>
@@ -305,7 +297,6 @@ function Home({ riskScore, setRiskScore, onViewChange }) {
         </div>
       )}
 
-      {/* Sensitivity Control */}
       <div className="card">
         <label className="block mb-2 font-semibold">Sensitivity</label>
         <input
