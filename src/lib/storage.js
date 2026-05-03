@@ -133,3 +133,25 @@ export const exportData = async () => {
     settings: settings.reduce((acc, s) => ({...acc, [s.key]: s.value}), {})
   };
 };
+
+// ADDED THIS TO FIX THE BUILD ERROR
+export const importData = async (data) => {
+  const db = await getDB();
+  if (data.events) {
+    const tx = db.transaction('events', 'readwrite');
+    for (const evt of data.events) {
+      tx.objectStore('events').put(evt);
+    }
+  }
+  if (data.incidents) {
+    const tx = db.transaction('incidents', 'readwrite');
+    for (const inc of data.incidents) {
+      tx.objectStore('incidents').put(inc);
+    }
+  }
+  if (data.settings) {
+    for (const [key, value] of Object.entries(data.settings)) {
+      await saveSetting(key, value);
+    }
+  }
+};
