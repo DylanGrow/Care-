@@ -5,14 +5,13 @@ import Timeline from './components/Timeline';
 import IncidentReporting from './components/IncidentReporting';
 import Settings from './components/Settings';
 import Onboarding from './components/Onboarding';
-import { getSetting, saveSetting, initDB } from './lib/storage';
+import { getSetting, saveSetting } from './lib/storage'; // Removed initDB here to avoid startup crashes
 import { requestNotificationPermission } from './lib/notifications';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [riskScore, setRiskScore] = useState(0);
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
   const [textSize, setTextSize] = useState('normal');
 
   useEffect(() => {
@@ -20,25 +19,32 @@ function App() {
   }, []);
 
   const initializeApp = async () => {
-    await initDB();
-    
-    const hasOnboarded = await getSetting('hasOnboarded');
-    if (!hasOnboarded) {
-      setShowOnboarding(true);
-    }
+    try {
+      // Check if user has completed onboarding
+      const hasOnboarded = await getSetting('hasOnboarded');
+      if (hasOnboarded === undefined || hasOnboarded === false) {
+        setShowOnboarding(true);
+      }
 
-    const savedTextSize = await getSetting('textSize');
-    if (savedTextSize) {
-      setTextSize(savedTextSize);
-      document.documentElement.classList.toggle('text-lg', savedTextSize === 'large');
-    }
+      // Load text size settings
+      const savedTextSize = await getSetting('textSize');
+      if (savedTextSize) {
+        setTextSize(savedTextSize);
+        document.documentElement.classList.toggle('text-lg', savedTextSize === 'large');
+      }
 
-    requestNotificationPermission();
-    
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/carecompass-lite/sw.js', {
-        scope: '/carecompass-lite/'
-      }).catch(err => console.log('SW registration failed:', err));
+      // Permissions
+      requestNotificationPermission();
+      
+      // Relative Service Worker Registration (Fixed for GitHub Pages)
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js', {
+          scope: './'
+        }).catch(err => console.log('SW registration failed:', err));
+      }
+    } catch (error) {
+      console.error("App failed to initialize storage:", error);
+      // Even if storage fails, we show the app so it's not a white screen
     }
   };
 
@@ -107,7 +113,7 @@ function NavButton({ icon, label, active, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center justify-center w-16 h-20 rounded-none ${
+      className={`flex flex-col items-center justify-center w-16 h-20 rounded-none bg-transparent border-none ${
         active ? 'text-blue-600 border-t-2 border-blue-600' : 'text-gray-500'
       }`}
     >
